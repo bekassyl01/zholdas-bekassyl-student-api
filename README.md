@@ -1,4 +1,4 @@
 # Student API
 Author: Zholdas Bekassyl
-Status: initial
+Status: documentation version
 Change: create endpoint now rejects empty fullName (Zholdas Bekassyl)
