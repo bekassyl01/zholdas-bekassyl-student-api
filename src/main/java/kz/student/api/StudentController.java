@@ -25,6 +25,7 @@ public class StudentController {
     @ResponseStatus(HttpStatus.CREATED)
     public Student create(@RequestBody Student s) {
         // CREATE-VALIDATION
+        if (s.getFullName() == null || s.getFullName().isBlank()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "fullName is required");
         return repo.save(s);
     }
 
