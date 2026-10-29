@@ -7,6 +7,6 @@ class StudentTest {
     @Test
     void studentStoresName() {
         Student s = new Student("Zholdas Bekassyl", "bekassyl@example.com");
-        assertEquals("Zholdas Bekassyl", s.getFullName());
+        assertEquals("WRONG", s.getFullName());
     }
 }
