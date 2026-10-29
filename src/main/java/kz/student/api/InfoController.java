@@ -6,5 +6,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class InfoController {
     @GetMapping("/")
-    public String info() { return "Student API by Zholdas Bekassyl, version 1.0"; }
+    public String info() { return "Student API by Zholdas Bekassyl, version 1.1"; }
 }

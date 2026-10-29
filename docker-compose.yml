@@ -1,0 +1,42 @@
+name: zholdas-bekassyl-student-api
+
+services:
+  db:
+    image: postgres:16
+    container_name: zholdas-bekassyl-postgres
+    environment:
+      POSTGRES_DB: studentdb
+      POSTGRES_USER: student
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - zholdas-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U student -d studentdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build: .
+    image: zholdas-bekassyl-student-api:v1.1-zholdas-bekassyl
+    container_name: zholdas-bekassyl-app
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_NAME: studentdb
+      DB_USER: student
+      DB_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "8081:8080"
+    networks:
+      - zholdas-net
+
+volumes:
+  pgdata:
+
+networks:
+  zholdas-net:
